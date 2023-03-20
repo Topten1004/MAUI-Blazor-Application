@@ -1,0 +1,50 @@
+﻿@page "/thankyou_resident"
+
+@inject NavigationManager NavigationManager;
+
+<!--Page HTML Start here-->
+<div class="auth-page-wrapper">
+    <div class="add-project-adata-wrap sign-up-code-wrap">
+
+        <div class="signup-logo-wrap">
+            <img src="images/logo.svg" alt="img" class="big-logo" />
+        </div>
+
+        <div class="page-heading-wrap">
+            <h2>Thank you !Your account setup is now complete</h2>
+
+
+            @*<h3 class="applied-code-text">TAN234i</h3>*@
+
+            <div class="thank-you-code-text">
+                <a href="/Project_step_3_admin">SignIn</a>
+                @*<span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.6 5.90002H7.30002C6.52683 5.90002 5.90002 6.52683 5.90002 7.30002V13.6C5.90002 14.3732 6.52683 15 7.30002 15H13.6C14.3732 15 15 14.3732 15 13.6V7.30002C15 6.52683 14.3732 5.90002 13.6 5.90002Z" stroke="#2661A5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M3.1 10.1H2.4C2.0287 10.1 1.6726 9.9525 1.41005 9.68995C1.1475 9.4274 1 9.0713 1 8.7V2.4C1 2.0287 1.1475 1.6726 1.41005 1.41005C1.6726 1.1475 2.0287 1 2.4 1H8.7C9.0713 1 9.4274 1.1475 9.68995 1.41005C9.9525 1.6726 10.1 2.0287 10.1 2.4V3.1" stroke="#2661A5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+
+                </span>*@
+            </div>
+
+           @* <div class="already-have-account-text">
+                <div class="form-button-wrap">
+                    <a href="javascript:void();"
+                       class="button primary-btn close-btn">SignIn</a>
+                </div>
+
+
+            </div>*@
+        </div>
+
+    </div>
+
+</div>
+<!--Page HTML Start here-->
+@code {
+    private void GoPrevPage()
+    {
+        //SaveData();
+        NavigationManager.NavigateTo("/Home");
+    }
+}

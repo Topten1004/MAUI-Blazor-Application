@@ -1,0 +1,596 @@
+﻿@page "/add_project_step_2/{E_GUID}"
+
+@using ReDpett.Pages.Components
+@using ReDpett.Service
+@inject NavigationManager NavigationManager;
+@inject ListAppDataService _listData;
+@inject ISaveDataService _OfflineDataService;
+
+<div class="inner-page-wrapper">
+    <div class="header-wrap">
+        <div class="back-top-page" @onclick=GoBackPage>
+            <span class="back-btn">
+                <img src="images/black-arrow.svg" alt="img" />
+            </span>
+        </div>
+    </div>
+    <div class="add-project-adata-wrap">
+        <div class="page-heading-wrap">
+            <h2>ReDPeTT-Frontline</h2>
+            <img src="images/border-svg.svg" alt="img" />
+        </div>
+        <div class="page-info-text">
+            Recommendation: complete the Resident and Job &
+            Site pages at the start of your cohort.
+            Throughout your training, add new Projects (or update entries) as needed.
+        </div>
+        <div class="page-stepper-wrap">
+            <div class="stepper-sepeat active-step" @onclick=GoBackPage>
+                <div class="stepper-count-wrap">
+                    <span>1</span>
+                </div>
+                <p>Resident </p>
+            </div>
+            <div class="stepper-sepeat active-step" @onclick=GoToStepTwo>
+                <div class="stepper-count-wrap">
+                    <span>2</span>
+                </div>
+                <p>Job & Site</p>
+            </div>
+            <div class="stepper-sepeat" @onclick=GoNextPage>
+                <div class="stepper-count-wrap">
+                    <span>3</span>
+                </div>
+                <p>Projects</p>
+            </div>
+        </div>
+        <div class="all-form-wraper">
+            <div class="form-set-repeat">
+                <div class="form-group">
+                    <label>Professional Background</label>
+                    <select class="form-control " @bind=Professional_Background>
+                        <option value="">Select</option>
+                        <option value="1-Human Heath (Physician)">1-Human Heath (Physician)</option>
+                        <option value="2-Human Health (Nurse)">2-Human Health (Nurse)</option>
+                        <option value="3-Human Health (Laboratorian)">3-Human Health (Laboratorian)</option>
+                        <option value="4-Human Health (Public Health Professional)">4-Human Health (Public Health Professional)</option>
+                        <option value="5-Human Health (Other)">5-Human Health (Other)</option>
+                        <option value="6-Animal Health (Veterinarian)">6-Animal Health (Veterinarian)</option>
+                        <option value="7-Animal Health (Techician)">7-Animal Health (Techician)</option>
+                        <option value="8-Animal Health (Laboratorian)">8-Animal Health (Laboratorian)</option>
+                        <option value="9-Animal Health (Other)">9-Animal Health (Other)</option>
+                        <option value="10-Environmental Health">10-Environmental Health</option>
+                        <option value="11-Other">11-Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Employer</label>
+                    <input type="text" placeholder="" class="form-control " @bind=Employer />
+                </div>
+                <div class="form-group">
+                    <label>Job Title</label>
+                    <input type="text" placeholder="" class="form-control " @bind=JobTitle />
+                </div>
+                <div class="form-group">
+                    <label>Years on Job</label>
+                    <input type="text" placeholder="" class="form-control " @bind=YearsOnJob />
+                </div>
+                <div class="form-group">
+                    <label>Supervisor Name</label>
+                    <input type="text" placeholder="Supervisor Name" class="form-control " @bind=SupervisorName />
+                </div>
+                <div class="form-group">
+                    <label>Site Address</label>
+                    <input type="text" placeholder="" class="form-control " @bind=SiteAddress />
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" placeholder="" class="form-control " @bind=City />
+                </div>
+                <div class="form-group">
+                    <label>State/Region/Provinc</label>
+                    <input type="text" placeholder="" class="form-control " @bind=State_Region_Pro />
+                </div>
+                <div class="form-group">
+                    <label>Postal / Zip Code</label>
+                    <input type="text" placeholder="" class="form-control " @bind=Postal_Zip />
+                </div>
+                <div class="form-group">
+                    <label>Country</label>
+                    <select class="form-control " @bind=Country>
+                        <option value="">Select</option>
+                        <option value="Afghanistan">Afghanistan</option>
+                        <option value="Aland Islands">Aland Islands</option>
+                        <option value="Albania">Albania</option>
+                        <option value="Algeria">Algeria</option>
+                        <option value="American Samoa">American Samoa</option>
+                        <option value="Andorra">Andorra</option>
+                        <option value="Angola">Angola</option>
+                        <option value="Anguilla">Anguilla</option>
+                        <option value="Antarctica">Antarctica</option>
+                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Armenia">Armenia</option>
+                        <option value="Aruba">Aruba</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Austria">Austria</option>
+                        <option value="Azerbaijan">Azerbaijan</option>
+                        <option value="Bahamas">Bahamas</option>
+                        <option value="Bahrain">Bahrain</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Barbados">Barbados</option>
+                        <option value="Belarus">Belarus</option>
+                        <option value="Belgium">Belgium</option>
+                        <option value="Belize">Belize</option>
+                        <option value="Benin">Benin</option>
+                        <option value="Bermuda">Bermuda</option>
+                        <option value="Bhutan">Bhutan</option>
+                        <option value="Bolivia (Plurinational State of)">Bolivia (Plurinational State of)</option>
+                        <option value="Bonaire, Sint Eustatius and Saba">Bonaire, Sint Eustatius and Saba</option>
+                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                        <option value="Botswana">Botswana</option>
+                        <option value="Bouvet Island">Bouvet Island</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                        <option value="Brunei Darussalam">Brunei Darussalam</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Burkina Faso">Burkina Faso</option>
+                        <option value="Burundi">Burundi</option>
+                        <option value="Cabo Verde">Cabo Verde</option>
+                        <option value="Cambodia">Cambodia</option>
+                        <option value="Cameroon">Cameroon</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Cayman Islands">Cayman Islands</option>
+                        <option value="Central African Republic">Central African Republic</option>
+                        <option value="Chad">Chad</option>
+                        <option value="Chile">Chile</option>
+                        <option value="China">China</option>
+                        <option value="Christmas Island">Christmas Island</option>
+                        <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Comoros">Comoros</option>
+                        <option value="Congo">Congo</option>
+                        <option value="Congo (Democratic Republic of the)">Congo (Democratic Republic of the)</option>
+                        <option value="Cook Islands">Cook Islands</option>
+                        <option value="Costa Rica">Costa Rica</option>
+                        <option value="Cote d’Ivoire">Cote d’Ivoire</option>
+                        <option value="Croatia">Croatia</option>
+                        <option value="Cuba">Cuba</option>
+                        <option value="Curacao">Curacao</option>
+                        <option value="Cyprus">Cyprus</option>
+                        <option value="Czechia">Czechia</option>
+                        <option value="Denmark">Denmark</option>
+                        <option value="Djibouti">Djibouti</option>
+                        <option value="Dominica">Dominica</option>
+                        <option value="Dominican Republic">Dominican Republic</option>
+                        <option value="Ecuador">Ecuador</option>
+                        <option value="Egypt">Egypt</option>
+                        <option value="El Salvador">El Salvador</option>
+                        <option value="Equatorial Guinea">Equatorial Guinea</option>
+                        <option value="Eritrea">Eritrea</option>
+                        <option value="Estonia">Estonia</option>
+                        <option value="Ethiopia">Ethiopia</option>
+                        <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+                        <option value="Faroe Islands">Faroe Islands</option>
+                        <option value="Fiji">Fiji</option>
+                        <option value="Finland">Finland</option>
+                        <option value="France">France</option>
+                        <option value="French Guiana">French Guiana</option>
+                        <option value="French Polynesia">French Polynesia</option>
+                        <option value="French Southern Territories">French Southern Territories</option>
+                        <option value="Gabon">Gabon</option>
+                        <option value="Gambia">Gambia</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Ghana">Ghana</option>
+                        <option value="Gibraltar">Gibraltar</option>
+                        <option value="Greece">Greece</option>
+                        <option value="Greenland">Greenland</option>
+                        <option value="Grenada">Grenada</option>
+                        <option value="Guadeloupe">Guadeloupe</option>
+                        <option value="Guam">Guam</option>
+                        <option value="Guatemala">Guatemala</option>
+                        <option value="Guernsey">Guernsey</option>
+                        <option value="Guinea">Guinea</option>
+                        <option value="Guinea-Bissau">Guinea-Bissau</option>
+                        <option value="Guyana">Guyana</option>
+                        <option value="Haiti">Haiti</option>
+                        <option value="Heard Island and McDonald Islands">Heard Island and McDonald Islands</option>
+                        <option value="Holy See">Holy See</option>
+                        <option value="Honduras">Honduras</option>
+                        <option value="Hong Kong">Hong Kong</option>
+                        <option value="Hungary">Hungary</option>
+                        <option value="Iceland">Iceland</option>
+                        <option value="India">India</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Iran (Islamic Republic of)">Iran (Islamic Republic of)</option>
+                        <option value="Iraq">Iraq</option>
+                        <option value="Ireland">Ireland</option>
+                        <option value="Isle of Man">Isle of Man</option>
+                        <option value="Israel">Israel</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Jamaica">Jamaica</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Jersey">Jersey</option>
+                        <option value="Jordan">Jordan</option>
+                        <option value="Kazakhstan">Kazakhstan</option>
+                        <option value="Kenya">Kenya</option>
+                        <option value="Kiribati">Kiribati</option>
+                        <option value="Korea (Democratic People’s Republic of)">Korea (Democratic People’s Republic of)</option>
+                        <option value="Korea (Republic of)">Korea (Republic of)</option>
+                        <option value="Kuwait">Kuwait</option>
+                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                        <option value="Lao People’s Democratic Republic">Lao People’s Democratic Republic</option>
+                        <option value="Latvia">Latvia</option>
+                        <option value="Lebanon">Lebanon</option>
+                        <option value="Lesotho">Lesotho</option>
+                        <option value="Liberia">Liberia</option>
+                        <option value="Libya">Libya</option>
+                        <option value="Liechtenstein">Liechtenstein</option>
+                        <option value="Lithuania">Lithuania</option>
+                        <option value="Luxembourg">Luxembourg</option>
+                        <option value="Macao">Macao</option>
+                        <option value="North Macedonia">North Macedonia</option>
+                        <option value="Madagascar">Madagascar</option>
+                        <option value="Malawi">Malawi</option>
+                        <option value="Malaysia">Malaysia</option>
+                        <option value="Maldives">Maldives</option>
+                        <option value="Mali">Mali</option>
+                        <option value="Malta">Malta</option>
+                        <option value="Marshall Islands">Marshall Islands</option>
+                        <option value="Martinique">Martinique</option>
+                        <option value="Mauritania">Mauritania</option>
+                        <option value="Mauritius">Mauritius</option>
+                        <option value="Mayotte">Mayotte</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Micronesia (Federated States of)">Micronesia (Federated States of)</option>
+                        <option value="Moldova (Republic of)">Moldova (Republic of)</option>
+                        <option value="Monaco">Monaco</option>
+                        <option value="Mongolia">Mongolia</option>
+                        <option value="Montenegro">Montenegro</option>
+                        <option value="Montserrat">Montserrat</option>
+                        <option value="Morocco">Morocco</option>
+                        <option value="Mozambique">Mozambique</option>
+                        <option value="Myanmar">Myanmar</option>
+                        <option value="Namibia">Namibia</option>
+                        <option value="Nauru">Nauru</option>
+                        <option value="Nepal">Nepal</option>
+                        <option value="Netherlands">Netherlands</option>
+                        <option value="New Caledonia">New Caledonia</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="Nicaragua">Nicaragua</option>
+                        <option value="Niger">Niger</option>
+                        <option value="Nigeria">Nigeria</option>
+                        <option value="Niue">Niue</option>
+                        <option value="Norfolk Island">Norfolk Island</option>
+                        <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                        <option value="Norway">Norway</option>
+                        <option value="Oman">Oman</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Palau">Palau</option>
+                        <option value="Palestine, State of">Palestine, State of</option>
+                        <option value="Panama">Panama</option>
+                        <option value="Papua New Guinea">Papua New Guinea</option>
+                        <option value="Paraguay">Paraguay</option>
+                        <option value="Peru">Peru</option>
+                        <option value="Philippines">Philippines</option>
+                        <option value="Pitcairn">Pitcairn</option>
+                        <option value="Poland">Poland</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Puerto Rico">Puerto Rico</option>
+                        <option value="Qatar">Qatar</option>
+                        <option value="Reunion">Reunion</option>
+                        <option value="Romania">Romania</option>
+                        <option value="Russian Federation">Russian Federation</option>
+                        <option value="Rwanda">Rwanda</option>
+                        <option value="Saint Barthelemy">Saint Barthelemy</option>
+                        <option value="Saint Helena, Ascension and Tristan da Cunha">Saint Helena, Ascension and Tristan da Cunha</option>
+                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                        <option value="Saint Lucia">Saint Lucia</option>
+                        <option value="Saint Martin">Saint Martin</option>
+                        <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+                        <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                        <option value="Samoa">Samoa</option>
+                        <option value="San Marino">San Marino</option>
+                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                        <option value="Saudi Arabia">Saudi Arabia</option>
+                        <option value="Senegal">Senegal</option>
+                        <option value="Serbia">Serbia</option>
+                        <option value="Seychelles">Seychelles</option>
+                        <option value="Sierra Leone">Sierra Leone</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Sint Maarten">Sint Maarten</option>
+                        <option value="Slovakia">Slovakia</option>
+                        <option value="Slovenia">Slovenia</option>
+                        <option value="Solomon Islands">Solomon Islands</option>
+                        <option value="Somalia">Somalia</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="South Georgia and the South Sandwich Islands">South Georgia and the South Sandwich Islands</option>
+                        <option value="South Sudan">South Sudan</option>
+                        <option value="Spain">Spain</option>
+                        <option value="Sri Lanka">Sri Lanka</option>
+                        <option value="Sudan">Sudan</option>
+                        <option value="Suriname">Suriname</option>
+                        <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+                        <option value="Eswatini">Eswatini</option>
+                        <option value="Sweden">Sweden</option>
+                        <option value="Switzerland">Switzerland</option>
+                        <option value="Syrian Arab Republic">Syrian Arab Republic</option>
+                        <option value="Taiwan (Province of China)">Taiwan (Province of China)</option>
+                        <option value="Tajikistan">Tajikistan</option>
+                        <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="Timor-Leste">Timor-Leste</option>
+                        <option value="Togo">Togo</option>
+                        <option value="Tokelau">Tokelau</option>
+                        <option value="Tonga">Tonga</option>
+                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                        <option value="Tunisia">Tunisia</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Turkmenistan">Turkmenistan</option>
+                        <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+                        <option value="Tuvalu">Tuvalu</option>
+                        <option value="Uganda">Uganda</option>
+                        <option value="Ukraine">Ukraine</option>
+                        <option value="United Arab Emirates">United Arab Emirates</option>
+                        <option value="United Kingdom of Great Britain and Northern Ireland">United Kingdom of Great Britain and Northern Ireland</option>
+                        <option value="United States of America">United States of America</option>
+                        <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                        <option value="Uruguay">Uruguay</option>
+                        <option value="Uzbekistan">Uzbekistan</option>
+                        <option value="Vanuatu">Vanuatu</option>
+                        <option value="Venezuela (Bolivarian Republic of)">Venezuela (Bolivarian Republic of)</option>
+                        <option value="Viet Nam">Viet Nam</option>
+                        <option value="Virgin Islands (British)">Virgin Islands (British)</option>
+                        <option value="Virgin Islands (U.S.)">Virgin Islands (U.S.)</option>
+                        <option value="Wallis and Futuna">Wallis and Futuna</option>
+                        <option value="Western Sahara">Western Sahara</option>
+                        <option value="Yemen">Yemen</option>
+                        <option value="Zambia">Zambia</option>
+                        <option value="Zimbabwe">Zimbabwe</option>
+                    </select>
+                </div>
+                @*<div class="form-group">
+                <label>RPFL19_Longitude</label>
+                <input type="text" placeholder="" readonly class="form-control " @bind=RPFL19_Longitude />
+                </div>
+                <div class="form-group">
+                <label>RPFL20_Latitude</label>
+                <input type="text" placeholder="" readonly class="form-control " @bind=RPFL20_Latitude />
+                </div>*@
+                <div class="form-group">
+                    <label>Secondary Subnational Unit</label>
+                    <input type="text" placeholder="" class="form-control " @bind=Secondary_Subnational_Unit />
+                </div>
+                <div class="form-group">
+                    <label>Tertiary Subnational Unit</label>
+                    <input type="text" placeholder="" class="form-control " @bind=Tertiary_Subnational_Unit />
+                </div>
+                <div class="form-group">
+                    <label>Facility Name</label>
+                    <input type="text" placeholder="" class="form-control " @bind=FacilityName />
+                </div>
+                <div class="custom-radio-wrap">
+                    <p class="radio-label">Facility Level</p>
+                    <label for="radio-1" class="radio-btn-wrap">
+                        <input type="radio" id="radio-1" class="hidden radio-btn-input" value="1" name="radio" @onclick=@(() => FacilityLevel = "National/Central")>
+                        <span class="checkmark"></span>
+                        <p class="radio-btn-label">
+                            National/Central
+                        </p>
+                    </label>
+                    <label for="radio-2" class="radio-btn-wrap">
+                        <input type="radio" id="radio-2" class="hidden radio-btn-input" value="1" name="radio" @onclick=@(() => FacilityLevel = "Regional")>
+                        <span class="checkmark"></span>
+                        <p class="radio-btn-label">
+                            Regional
+                        </p>
+                    </label>
+                    <label for="radio-3" class="radio-btn-wrap">
+                        <input type="radio" id="radio-3" class="hidden radio-btn-input" value="1" name="radio" @onclick=@(() => FacilityLevel = "District")>
+                        <span class="checkmark"></span>
+                        <p class="radio-btn-label">
+                            District
+                        </p>
+                    </label>
+                    <label for="radio-4" class="radio-btn-wrap">
+                        <input type="radio" id="radio-4" class="hidden radio-btn-input" value="1" name="radio" @onclick=@(() => FacilityLevel = "Health Facility")>
+                        <span class="checkmark"></span>
+                        <p class="radio-btn-label">
+                            Health Facility
+                        </p>
+                    </label>
+                    <label for="radio-5" class="radio-btn-wrap">
+                        <input type="radio" id="radio-5" class="hidden radio-btn-input" value="1" name="radio" @onclick=@(() => FacilityLevel = "")>
+                        <span class="checkmark"></span>
+                        <p class="radio-btn-label">
+                            Other
+                        </p>
+                    </label>
+                </div>
+                @if (FacilityLevel == "")
+                {
+                    <div class="form-group">
+                        <label>CODE: Enable if Other is Facility Level</label>
+                        <input type="text" class="form-control " @bind=FacilityLevel />
+                    </div>
+                }
+            </div>
+            <div class="form-button-wrap">
+                <button class="button primary-btn-sky-blue" @onclick=GoBackPage>Back</button>
+                <button class="button primary-btn" @onclick=OnSaveData>Save</button>
+                <button class="button" @onclick=GoNextPage>Next</button>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-wrap">
+        <div class="footer-inner">
+            <a href="/Home" class="footer-link">
+                <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.9525 20.5769V17.7619C10.9525 17.0433 11.5393 16.4608 12.2631 16.4608H14.9092C15.2568 16.4608 15.5901 16.5979 15.8359 16.8419C16.0817 17.0859 16.2198 17.4168 16.2198 17.7619V20.5769C16.2176 20.8757 16.3356 21.1629 16.5476 21.375C16.7597 21.587 17.0482 21.7062 17.3491 21.7062H19.1543C19.9974 21.7084 20.8068 21.3774 21.4037 20.7863C22.0007 20.1953 22.3362 19.3927 22.3362 18.5557V10.5362C22.3362 9.86009 22.0343 9.21877 21.5119 8.78499L15.3708 3.91601C14.3025 3.06231 12.7719 3.08988 11.7356 3.98148L5.73461 8.78499C5.18751 9.20598 4.86052 9.8492 4.84436 10.5362V18.5475C4.84436 20.292 6.26891 21.7062 8.02619 21.7062H9.7902C10.4152 21.7062 10.9232 21.2056 10.9277 20.5851L10.9525 20.5769Z" fill="#D0D0D0" />
+                </svg>
+                <p>Home</p>
+            </a>
+            <a @onclick=GoBackPage class="footer-link active">
+                <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4189 3.47566C14.4189 3.23918 14.2316 3.04053 13.988 3.04053H8.98668C6.65458 3.04053 4.76268 4.96081 4.76268 7.30677V17.5041C4.76268 19.9636 6.74824 21.9596 9.18336 21.9596H16.6386C18.9613 21.9596 20.8439 20.0582 20.8439 17.7122V10.1068C20.8439 9.8703 20.6565 9.68111 20.4224 9.68111C20.2046 9.68111 19.9649 9.68387 19.7447 9.68641C19.6257 9.68779 19.5123 9.6891 19.4112 9.68986L19.2517 9.69057C19.0631 9.69057 18.8495 9.68875 18.6092 9.68672C18.3004 9.6841 17.9474 9.68111 17.5471 9.68111C15.8331 9.67165 14.4189 8.25272 14.4189 6.52163V3.47566ZM16.5535 3.58161C16.2735 3.28742 15.7837 3.48985 15.7837 3.89756V6.39109C15.7837 7.43731 16.6369 8.29907 17.6728 8.29907C18.3256 8.30569 19.2331 8.30853 20.003 8.30569C20.3973 8.30475 20.5977 7.82893 20.3242 7.54231C19.8309 7.02425 19.1435 6.30216 18.4527 5.57651C17.7586 4.84732 17.061 4.11453 16.5535 3.58161Z" fill="#D0D0D0" />
+                    <path d="M12.8033 17.3393V10.7802" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M9.52373 14.0597H16.0828" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <p>Add Project</p>
+            </a>
+            <a href="/Projects" class="footer-link">
+                <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.9881 3.04053C14.2316 3.04053 14.4189 3.23918 14.4189 3.47566V6.52163C14.4189 8.25272 15.8331 9.67165 17.5471 9.68111C18.2589 9.68111 18.8208 9.69057 19.2517 9.69057L19.4112 9.68986C19.6992 9.68767 20.0868 9.68111 20.4224 9.68111C20.6566 9.68111 20.8439 9.8703 20.8439 10.1068V17.7122C20.8439 20.0582 18.9613 21.9596 16.6386 21.9596H9.18338C6.74826 21.9596 4.7627 19.9636 4.7627 17.5041V7.30677C4.7627 4.96081 6.6546 3.04053 8.9867 3.04053H13.9881ZM14.9902 15.2433H9.89518C9.51118 15.2433 9.19275 15.5555 9.19275 15.9433C9.19275 16.3311 9.51118 16.6528 9.89518 16.6528H14.9902C15.3742 16.6528 15.6926 16.3311 15.6926 15.9433C15.6926 15.5555 15.3742 15.2433 14.9902 15.2433ZM13.0608 10.5135H9.89518C9.51118 10.5135 9.19275 10.8352 9.19275 11.223C9.19275 11.6108 9.51118 11.923 9.89518 11.923H13.0608C13.4448 11.923 13.7633 11.6108 13.7633 11.223C13.7633 10.8352 13.4448 10.5135 13.0608 10.5135ZM15.7837 3.89756C15.7837 3.48985 16.2735 3.28742 16.5536 3.58161C17.566 4.64486 19.3352 6.50365 20.3243 7.54231C20.5977 7.82893 20.3973 8.30475 20.003 8.30569C19.2331 8.30853 18.3256 8.30569 17.6728 8.29907C16.6369 8.29907 15.7837 7.43731 15.7837 6.39109V3.89756Z" fill="#D0D0D0" />
+                </svg>
+                <p>Project</p>
+            </a>
+            <a href="/" class="footer-link">
+                <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.6747 3.09274C14.3861 3.09274 15.0303 3.48785 15.386 4.07109C15.559 4.35331 15.6744 4.70138 15.6455 5.06826C15.6263 5.35048 15.7128 5.63269 15.8667 5.89609C16.357 6.69571 17.4433 6.99674 18.2893 6.54519C19.2411 5.99957 20.4428 6.32883 20.9908 7.26014L21.6349 8.37019C22.1925 9.30151 21.8849 10.4962 20.9235 11.0324C20.1063 11.5122 19.8179 12.5752 20.3082 13.3842C20.462 13.6382 20.6351 13.8546 20.9043 13.9863C21.2408 14.165 21.5003 14.4473 21.683 14.7295C22.0387 15.3127 22.0099 16.0277 21.6638 16.658L20.9908 17.7868C20.6351 18.3889 19.9717 18.7652 19.2892 18.7652C18.9527 18.7652 18.5777 18.6711 18.2701 18.483C18.0201 18.323 17.7317 18.2666 17.4241 18.2666C16.4723 18.2666 15.6744 19.0474 15.6455 19.9787C15.6455 21.0605 14.7611 21.9072 13.6555 21.9072H12.348C11.2328 21.9072 10.3483 21.0605 10.3483 19.9787C10.3291 19.0474 9.53117 18.2666 8.57941 18.2666C8.26215 18.2666 7.97374 18.323 7.7334 18.483C7.42575 18.6711 7.0412 18.7652 6.71434 18.7652C6.02214 18.7652 5.35879 18.3889 5.00308 17.7868L4.33973 16.658C3.98402 16.0465 3.96479 15.3127 4.3205 14.7295C4.47432 14.4473 4.76274 14.165 5.08961 13.9863C5.35879 13.8546 5.53184 13.6382 5.69527 13.3842C6.17596 12.5752 5.88755 11.5122 5.07038 11.0324C4.11861 10.4962 3.81097 9.30151 4.35896 8.37019L5.00308 7.26014C5.56068 6.32883 6.75279 5.99957 7.71417 6.54519C8.55057 6.99674 9.63692 6.69571 10.1272 5.89609C10.281 5.63269 10.3676 5.35048 10.3483 5.06826C10.3291 4.70138 10.4349 4.35331 10.6175 4.07109C10.9732 3.48785 11.6174 3.11156 12.3192 3.09274H13.6747ZM13.0114 9.84713C11.502 9.84713 10.281 11.0324 10.281 12.5094C10.281 13.9863 11.502 15.1622 13.0114 15.1622C14.5207 15.1622 15.7128 13.9863 15.7128 12.5094C15.7128 11.0324 14.5207 9.84713 13.0114 9.84713Z" fill="#D0D0D0" />
+                </svg>
+                <p>Setting </p>
+            </a>
+        </div>
+    </footer>
+</div>
+
+@code {
+
+    [Parameter]
+    public string E_GUID { get; set; }
+    public string Professional_Background { get; set; }
+    public string Employer { get; set; }
+    public string JobTitle { get; set; }
+    public int YearsOnJob { get; set; }
+    public string SupervisorName { get; set; }
+    public string SiteAddress { get; set; }
+    public string City { get; set; }
+    public string State_Region_Pro { get; set; }
+    public string Postal_Zip { get; set; }
+    public string Country { get; set; }
+    public string RPFL19_Longitude { get; set; }
+    public string RPFL20_Latitude { get; set; }
+    public string Secondary_Subnational_Unit { get; set; }
+    public string Tertiary_Subnational_Unit { get; set; }
+    public string FacilityName { get; set; }
+    public string FacilityLevel { get; set; }
+    private CancellationTokenSource _cancelTokenSource;
+    private AppDataService data = new AppDataService();
+
+    protected async override void OnInitialized()
+    {
+        _listData = await _OfflineDataService.GetDataFromOfflineDB();
+
+        if (_listData != null)
+        {
+            var _data = _listData.appDataServices.Find(x => x.GUID == E_GUID);
+            if (_data != null)
+            {
+                data = _data;
+            }
+        }
+
+        Professional_Background = data.Professional_Background;
+        Employer = data.Employer;
+        JobTitle = data.JobTitle;
+        YearsOnJob = data.YearsOnJob;
+        SupervisorName = data.SupervisorName;
+        SiteAddress = data.SiteAddress;
+        City = data.City;
+        State_Region_Pro = data.State_Region_Pro;
+        Postal_Zip = data.Postal_Zip;
+        Country = data.Country;
+        RPFL19_Longitude = data.RPFL19_Longitude;
+        RPFL20_Latitude = data.RPFL20_Latitude;
+        Secondary_Subnational_Unit = data.Secondary_Subnational_Unit;
+        Tertiary_Subnational_Unit = data.Tertiary_Subnational_Unit;
+        FacilityName = data.FacilityName;
+        FacilityLevel = data.FacilityLevel;
+        await GetCurrentLocation();
+    }
+
+    public async Task GetCurrentLocation()
+    {
+        try
+        {
+            GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+
+            _cancelTokenSource = new CancellationTokenSource();
+
+            Location location = await Geolocation.Default.GetLocationAsync(request, _cancelTokenSource.Token);
+
+            if (location != null)
+            {
+                RPFL20_Latitude = Convert.ToString(location.Latitude);
+                RPFL19_Longitude = Convert.ToString(location.Longitude);
+            }
+            else
+            {
+                //Location location = await Geolocation.(request, _cancelTokenSource.Token);
+            }
+
+        }
+        catch (Exception ex)
+        {
+            // Unable to get location
+        }
+    }
+
+    private void GoNextPage()
+    {
+        SaveData();
+        NavigationManager.NavigateTo("/add_project_step_3/"+data.GUID);
+    }
+
+    private void GoBackPage()
+    {
+        SaveData();
+        NavigationManager.NavigateTo("/add_project_step_1/"+data.GUID);
+    }
+
+    private void GoToStepTwo()
+    {
+        SaveData();
+        NavigationManager.NavigateTo("/add_project_step_2/"+data.GUID);
+    }
+
+    private async void OnSaveData()
+    {
+        SaveData();
+        await Application.Current.MainPage.DisplayAlert("Alert!", "Data Saved..", "OK");
+    }
+
+    private void SaveData()
+    {
+        data.Professional_Background = Professional_Background;
+        data.Employer = Employer;
+        data.JobTitle = JobTitle;
+        data.YearsOnJob = YearsOnJob;
+        data.SupervisorName = SupervisorName;
+        data.SiteAddress = SiteAddress;
+        data.City = City;
+        data.State_Region_Pro = State_Region_Pro;
+        data.Postal_Zip = Postal_Zip;
+        data.Country = Country;
+        data.RPFL19_Longitude = RPFL19_Longitude;
+        data.RPFL20_Latitude = RPFL20_Latitude;
+        data.Secondary_Subnational_Unit = Secondary_Subnational_Unit;
+        data.Tertiary_Subnational_Unit = Tertiary_Subnational_Unit;
+        data.FacilityName = FacilityName;
+        data.FacilityLevel = FacilityLevel;
+
+        if(_listData != null)
+        {
+            var _data = _listData.appDataServices.Find(x => x.GUID == data.GUID);
+            if (_data != null)
+            {
+                _listData.appDataServices.Remove(_data);
+                _data = data;
+                _listData.appDataServices.Add(_data);
+            }
+        }
+
+        _OfflineDataService.InsertOfflineDB(_listData);
+    }
+}

@@ -1,0 +1,141 @@
+﻿@page "/Project_step_3_admin"
+
+@inject NavigationManager NavigationManager;
+
+<!--Page HTML Start here-->
+<div class="inner-page-wrapper">
+    <div class="header-wrap">
+        <div class="back-top-page">
+            <span class="back-btn">
+                <img src="images/black-arrow.svg" alt="img" />
+            </span>
+        </div>
+    </div>
+    <div class="add-project-adata-wrap">
+        <div class="page-heading-wrap">
+            <h2>ReDPeTT-Frontline</h2>
+            <img src="images/border-svg.svg" alt="img" />
+        </div>
+        <div class="page-info-text">
+            Recommendation: complete the Resident and Job & Site pages at the start of your cohort. Throughout your training, add new Projects (or update entries) as needed.
+        </div>
+        <div class="page-stepper-wrap">
+            <div class="stepper-sepeat active-step">
+                <div class="stepper-count-wrap">
+                    <span>1</span>
+                </div>
+                <p>Resident </p>
+            </div>
+            <div class="stepper-sepeat active-step">
+                <div class="stepper-count-wrap">
+                    <span>2</span>
+                </div>
+                <p>Job & Site</p>
+            </div>
+            <div class="stepper-sepeat active-step">
+                <div class="stepper-count-wrap">
+                    <span>3</span>
+                </div>
+                <p>Projects</p>
+            </div>
+
+            <div class="stepper-sepeat">
+                <div class="stepper-count-wrap">
+                    <span>4</span>
+                </div>
+                <p>Sorces</p>
+            </div>
+
+        </div>
+        <div class="page-heading-wrap">
+            <h2>Project Reports and Files</h2>
+            <img src="images/border-svg.svg" alt="img" />
+        </div>
+        <div class="page-info-text">
+            You may create up to 10 entries. For each attachment, please provide a report title and select the type of report. You can also provide a report title and report type without providing an attachment.
+        </div>
+        <div class="all-form-wraper">
+            <div class="form-set-repeat">
+                <!---Entry preview Section--->
+
+
+
+                <div class="add-new-entry-wrap added-entry-preview">
+                    <div class="entry-listing-repeat">
+                        <p class="entry-left-data">Project Attachment</p>
+                        <span class="entry-info">serious-woman-making....</span>
+                    </div>
+                    <div class="entry-listing-repeat">
+                        <p class="entry-left-data">Report Title (required ...</p>
+                        <span class="entry-info">Test</span>
+                    </div>
+                    <div class="entry-listing-repeat">
+                        <p class="entry-left-data">Report Category</p>
+                        <span class="entry-info">Outbreak Investigation Report</span>
+                    </div>
+
+                    <div class="edit-project-wrap" id="edit-new-entry">
+                        <span><img src="images/edit-icon.svg" alt="img" /></span>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <div class="form-button-wrap">
+                <button class="button primary-btn-sky-blue">Back</button>
+                <button class="button primary-btn">Save</button>
+                <button class="button" @onclick=GoNextPage>Next</button>
+            </div>
+        </div>
+    </div>
+    <!---Add entry modal HTML start here--->
+    <div id="edit-entry-modal" class="add-entry-modal-wrapper hide-modal">
+        <div class="modal-mid-wrap">
+            <div class="add-entry-modal-inner-data">
+
+                <div class="entry-modal-data-hold">
+
+
+                    <div class="form-group">
+                        <label>Topic</label>
+                        <select class="form-control ">
+                            <option>Select</option>
+                        </select>
+                    </div>
+
+                    <div class="custom-radio-wrap">
+                        <p class="radio-label" style="font-weight:600; margin-bottom:10px;">Completed During Training?</p>
+                        <label for="radio-1" class="radio-btn-wrap">
+                            <input type="radio" id="radio-1" class="hidden radio-btn-input" value="1" name="radio">
+                            <span class="checkmark"></span>
+                            <p class="radio-btn-label">
+                                Yes
+                            </p>
+                        </label>
+                        <label for="radio-2" class="radio-btn-wrap">
+                            <input type="radio" id="radio-2" class="hidden radio-btn-input" value="1" name="radio">
+                            <span class="checkmark"></span>
+                            <p class="radio-btn-label">
+                                No
+                            </p>
+                        </label>
+
+                    </div>
+
+                    <div class="form-button-wrap">
+                        <button class="button primary-btn" id="close-modal">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@code {
+    private void GoNextPage()
+    {
+        NavigationManager.NavigateTo("/Project_step_4_admin");
+    }
+}

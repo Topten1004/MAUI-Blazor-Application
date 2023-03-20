@@ -1,0 +1,64 @@
+﻿@page "/gen_passcode"
+
+@inject NavigationManager NavigationManager;
+
+<!--Page HTML Start here-->
+<div class="auth-page-wrapper">
+    <div class="signup-logo-wrap">
+        <img src="images/logo.svg" alt="img" />
+    </div>
+    <div class="add-project-adata-wrap">
+        <div class="page-heading-wrap">
+            <h2>Resident Passcode</h2>
+            <p>Establish a one-time passcode. Residents in your Program will use this code to setup the app. <a href="#" class="blue-text">Learn More</a></p>
+        </div>
+        <div class="all-form-wraper">
+            <form>
+                <div class="form-set-repeat">
+                    <div class="form-group">
+                        <p class="readonly-text">FETP Ghana</p>
+                    </div>
+                    <div class="form-group">
+                        <label style="font-weight:normal;">Enter Code</label>
+                        <input type="text" value="" placeholder="Code" class="form-control" />
+                    </div>
+
+                    <div class="custom-radio-wrap custom-checkbox">
+                        <label for="radio-1" class="radio-btn-wrap">
+                            <input type="checkbox" id="radio-1" class="hidden radio-btn-input" value="1" name="radio">
+                            <span class="checkmark"></span>
+                            <p class="radio-btn-label">
+                                Auto-generate code
+                            </p>
+                        </label>
+
+                    </div>
+
+                </div>
+                <div class="form-set-repeat">
+
+                    <div class="form-button-wrap">
+                        <button class="button primary-btn" @onclick=OnSubmit>Done</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--div class="create-account-with-social">
+        <p>Or, Sign in with</p>
+        <div class="create-social-account-wrap">
+            <button class="signup-social-icon">
+            <img src="images/signup-google.png" alt="img"/>
+            </button>
+            <button  class="signup-social-icon"><img src="images/signup-fcebook.png" alt="img"/></button>
+        </div>
+    </div-->
+</div>
+
+@code {
+    private void OnSubmit()
+    {
+        NavigationManager.NavigateTo("/thankyou_admin", true);
+    }
+}

@@ -1,0 +1,86 @@
+﻿@page "/Project_step_4_admin"
+
+@inject NavigationManager NavigationManager;
+
+<!--Page HTML Start here-->
+<div class="inner-page-wrapper">
+    <div class="header-wrap">
+        <div class="back-top-page">
+            <span class="back-btn">
+                <img src="images/black-arrow.svg" alt="img" />
+            </span>
+        </div>
+    </div>
+    <div class="add-project-adata-wrap">
+        <div class="page-heading-wrap">
+            <h2>Administrators/Resident Advisors</h2>
+            <img src="images/border-svg.svg" alt="img" />
+        </div>
+        <div class="page-info-text">
+            Resident Advisor: review screens 1 and 2. Update screens 3 and 4 as needed.
+        </div>
+        <div class="page-stepper-wrap">
+            <div class="stepper-sepeat active-step">
+                <div class="stepper-count-wrap">
+                    <span>1</span>
+                </div>
+                <p>Resident </p>
+            </div>
+            <div class="stepper-sepeat active-step">
+                <div class="stepper-count-wrap">
+                    <span>2</span>
+                </div>
+                <p>Job & Site</p>
+            </div>
+            <div class="stepper-sepeat active-step">
+                <div class="stepper-count-wrap">
+                    <span>3</span>
+                </div>
+                <p>Projects</p>
+            </div>
+
+            <div class="stepper-sepeat active-step">
+                <div class="stepper-count-wrap">
+                    <span>4</span>
+                </div>
+                <p>sorces</p>
+            </div>
+
+
+        </div>
+        <div class="all-form-wraper">
+
+
+            <div class="form-set-repeat">
+
+                <div class="form-group">
+                    <label>Workshop 1 Score</label>
+                    <input type="text" placeholder="" class="form-control " />
+                </div>
+                <div class="form-group">
+                    <label>Workshop 2 Score</label>
+                    <input type="text" class="form-control" placeholder="" name="name">
+                </div>
+
+                <div class="form-group">
+                    <label>Workshop 3 Score</label>
+                    <input type="text" class="form-control" placeholder="" name="name">
+                </div>
+
+                <div class="form-button-wrap">
+                    <button class="button primary-btn-sky-blue">Back</button>
+                    <button class="button primary-btn">Save</button>
+                    <button class="button" @onclick=GoNextPage>Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--Page HTML Start here-->
+@code {
+    private void GoNextPage()
+    {
+        NavigationManager.NavigateTo("/Home");
+    }
+}

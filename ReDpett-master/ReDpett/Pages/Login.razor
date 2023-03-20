@@ -1,0 +1,51 @@
+﻿@page "/login"
+
+@inject NavigationManager NavigationManager;
+
+<!--Page HTML Start here-->
+<div class="auth-page-wrapper">
+    <div class="signup-logo-wrap">
+        <img src="images/logo.svg" alt="img" />
+    </div>
+    <div class="add-project-adata-wrap">
+        <div class="page-heading-wrap">
+            <h2>Sign in</h2>
+        </div>
+        <div class="all-form-wraper">
+            <form>
+                <div class="form-set-repeat">
+                    <div class="form-group">
+                        <input type="text" value="" placeholder="Email" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" value="" placeholder="Password" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-set-repeat">
+
+                    <div class="form-button-wrap">
+                        <button class="button primary-btn" @onclick=OnSubmit>Sign in</button>
+                    </div>
+                    <div class="already-have-account-text"><a href="/register" class="register-link">Register</a></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--div class="create-account-with-social">
+        <p>Or, Sign in with</p>
+        <div class="create-social-account-wrap">
+            <button class="signup-social-icon">
+            <img src="images/signup-google.png" alt="img"/>
+            </button>
+            <button  class="signup-social-icon"><img src="images/signup-fcebook.png" alt="img"/></button>
+        </div>
+    </div-->
+</div>
+<!--Page HTML Start here-->
+
+@code {
+    private void OnSubmit()
+    {
+        NavigationManager.NavigateTo("/register",true);
+    }
+}

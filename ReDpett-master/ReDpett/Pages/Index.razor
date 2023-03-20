@@ -1,0 +1,95 @@
+﻿@page "/"
+
+@inject NavigationManager NavigationManager;
+
+<div class="page-data-wrap">
+    <div class="page-data-inner-wrap">
+        <div class="page-logo-wrap">
+            <img src="images/logo.svg" alt="logo" />
+            <h1>
+                ReDPeTT<br />
+                Frontline
+            </h1>
+        </div>
+        <div class="front-page-mid-area">
+            <h2 class="heading-2">Resident - Driven Project Tool App For Frontline tier</h2>
+            <p class="sub-info-text">An application collaboratively  developed by the US CDC’s Centre for Global Health’s Division Health Production and EPi Info<sub>TM</sub></p>
+            <div class="bands-logos-wrap">
+                <a href="/screen_2" class="brand-logo-wrap">
+                    <img src="images/logo-1.png" alt="img" />
+                </a>
+                <a href="/screen_2" class="brand-logo-wrap">
+                    <img src="images/logo-2.png" alt="img" />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+
+    protected async override void OnInitialized()
+    {
+        if ((DeviceInfo.Platform == DevicePlatform.iOS || DeviceInfo.Platform == DevicePlatform.Android))
+        {
+            await CheckAndRequestLocationPermission();
+            await CheckAndRequestStoragePermission();
+        }
+
+    }
+    public async Task<PermissionStatus> CheckAndRequestLocationPermission()
+    {
+        PermissionStatus status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+
+        if (status == PermissionStatus.Granted)
+            return status;
+
+        if (status == PermissionStatus.Denied && (DeviceInfo.Platform == DevicePlatform.iOS || DeviceInfo.Platform == DevicePlatform.Android))
+        {
+            status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+        }
+
+        //if (Permissions.ShouldShowRationale<Permissions.LocationWhenInUse>())
+        //{
+        //    // Prompt the user with additional information as to why the permission is needed
+        //}
+
+        return status;
+    }
+
+    public async Task<PermissionStatus> CheckAndRequestStoragePermission()
+    {
+        PermissionStatus status_read = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
+        PermissionStatus status_wite = await Permissions.CheckStatusAsync<Permissions.StorageWrite>();
+
+        if (status_read == PermissionStatus.Granted && status_wite == PermissionStatus.Granted)
+            return status_read;
+
+        if (status_read == PermissionStatus.Denied && (DeviceInfo.Platform == DevicePlatform.iOS || DeviceInfo.Platform == DevicePlatform.Android))
+        {
+            status_read = await Permissions.RequestAsync<Permissions.StorageRead>();
+        }
+
+        if (status_wite == PermissionStatus.Denied && (DeviceInfo.Platform == DevicePlatform.iOS || DeviceInfo.Platform == DevicePlatform.Android))
+        {
+            status_wite = await Permissions.RequestAsync<Permissions.StorageWrite>();
+        }
+
+        //if (Permissions.ShouldShowRationale<Permissions.LocationWhenInUse>())
+        //{
+        //    // Prompt the user with additional information as to why the permission is needed
+        //}
+
+        return status_wite;
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await Task.Delay(500);
+        Thread.Sleep(4000);
+        NavigationManager.NavigateTo("/screen_2");
+
+    }
+}
